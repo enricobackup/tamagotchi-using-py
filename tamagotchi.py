@@ -1,0 +1,340 @@
+import os
+import time
+from datetime import datetime, timedelta
+from random import randint
+
+
+#insira a data atual!
+initial_date = datetime(2024, 8, 15)
+
+
+
+tamagotchi = {
+  "hunger": 0, #ok
+  "happiness": 0, #ok
+  "health": 0, #ok
+  "energy": 0, #ok
+  "age": 0, #ok
+  "weight": 0, #ok
+  "sickness": 0, #ok
+  "alive": True,
+}
+
+def atualizar_status():
+  tempo_de_fome = 10
+  tempo_de_sono = 28800
+  tempo_de_happiness = 25000
+  tempo_sickness = 86400
+ 
+
+
+def update_age(initial_date, age):
+    current_date = datetime.now()
+    days_passed = (current_date - initial_date).days
+    new_age = tamagotchi['age'] + days_passed
+    return new_age
+    
+
+
+heart_stages = [
+"♡︎♡︎♡︎♡︎"
+,
+"❤♡︎♡︎♡︎"
+,
+"❤❤♡︎♡︎"
+,
+"❤❤❤♡︎"
+,
+"❤❤❤❤"
+      ]
+
+tamagotchi_stages = [
+  """
+"""
+]
+            
+def limpar_tela():
+  os.system('cls') 
+limpar_tela()
+
+def feed():
+  feed_delay = 1.5
+  global heart_stages
+  limpar_tela()
+  
+  while True:
+    print('escolha uma das opções: ')
+    print('1- banana**')
+    print('2- maçã**')
+    print('3- Sair')
+    escolha_de_comida = input('#')
+    
+    if escolha_de_comida == '1':
+      try:
+        tamagotchi['hunger'] += 1
+        tamagotchi['weight'] += 0.5
+        health_value = tamagotchi['hunger']
+        print(heart_stages[health_value])
+        time.sleep(feed_delay)
+        limpar_tela()
+        continue
+      
+      except:
+        print('tamagotchi está cheio!')
+        time.sleep(feed_delay)
+        limpar_tela()
+      continue
+    
+    elif escolha_de_comida == "2":
+      try:
+        tamagotchi["happiness"] += 1
+        tamagotchi['weight'] += 0.5
+        health_value = tamagotchi['happiness']
+        print(heart_stages[health_value]) 
+        time.sleep(feed_delay)    
+        limpar_tela()
+        continue
+      except:
+        print('tamagotchi está cheio e feliz!')
+        time.sleep(feed_delay)
+        limpar_tela()
+      continue
+    elif escolha_de_comida == '3':
+      break
+    else:
+      limpar_tela()
+      print('opção invalida')
+      time.sleep(feed_delay)
+      limpar_tela()
+      continue
+    
+#sistema de alimentação funcionando, aumentando hunger e happiness :)
+
+def lights():
+  sleep_delay = 10
+  while True:
+    limpar_tela()
+    print('gostaria de apagar as luzes?')
+    print('1- Sim!')
+    print('2- Não!')
+    lights_choice = input('#')
+    limpar_tela()
+    
+    if lights_choice == '1':
+      if tamagotchi['energy'] >= 4:
+        print('tamagotchi não está com muito sono...')
+        time.sleep(3)
+        limpar_tela()
+        continue
+      
+      elif tamagotchi['energy'] in range(0,4):
+        tamagotchi['energy'] += 1
+        print('luzes apagadas')
+        print('tamagotchi está dormindo...')
+        time.sleep(sleep_delay)
+        limpar_tela()
+        continue
+    if lights_choice == '2':
+      break
+    else:
+      print('escolha uma opção valida!')
+      continue
+    
+#sistema sleep funcionando, aumentando energia :)
+
+  
+def game():
+  while True:
+    numero_tama_aleatorio = randint(0,10)
+    numero_escolhido = randint(3,7)
+    if numero_tama_aleatorio == numero_escolhido:
+      continue
+    else:
+      pass
+    limpar_tela()
+    print('Jogo da advinhação')
+    time.sleep(2)
+    limpar_tela()
+    print(f'o numero escolhido foi {numero_escolhido}.')
+    print(f'O tamagotchi pensou em um numero, você acha que é maior ou menor que {numero_escolhido}?')
+    print('1- Maior')
+    print('2- Menor')
+    print('3- sair')
+    escolha_game = input('#')
+    limpar_tela()
+    
+    if escolha_game == '1':
+      
+      if numero_tama_aleatorio > numero_escolhido:
+        print(f'Você acertou! O numero do tamagotchi era {numero_tama_aleatorio}')
+        time.sleep(2)
+        if tamagotchi['happiness'] < 4:
+          tamagotchi['happiness'] += 1
+        else:
+          pass
+      else:
+        print(f'Você errou! O numero do tamagotchi era {numero_tama_aleatorio}')
+        time.sleep(2)
+        continue
+        
+    elif escolha_game == '2':
+      if numero_tama_aleatorio < numero_escolhido:
+        print(f'Você acertou! O numero do tamagotchi era {numero_tama_aleatorio}')
+        time.sleep(2)
+        if tamagotchi['happiness'] < 4:
+          tamagotchi['happiness'] += 1
+        else:
+          pass
+      else:
+        print(f'Você errou! O numero do tamagotchi era {numero_tama_aleatorio}')
+        time.sleep(2)
+        continue
+      
+    elif escolha_game == '3':
+      break
+    else:
+      print('escolha uma opção valida!')
+      time.sleep(2)
+      continue
+
+
+
+def medicine():
+  limpar_tela()
+  global heart_stages
+  print('Você deu medicamento para o tamagotchi')
+  try:
+    tamagotchi['sickness'] -= 1
+  except:
+    pass
+  if tamagotchi['health'] < 4:
+    tamagotchi['health'] += 1
+  else:
+    pass
+  time.sleep(1)
+  health_heart = tamagotchi['health']
+  print(heart_stages[health_heart])
+  time.sleep(2)
+  
+  
+
+def status():
+  global tamagotchi
+  while True:
+    tamagotchi_status_secondary = {
+    "hunger": tamagotchi['hunger'],
+    "happiness": tamagotchi['happiness'],
+    "health": tamagotchi['health'],
+    "energy": tamagotchi['energy'],
+  }
+    break
+  
+  limpar_tela()
+  print(tamagotchi['hunger'])
+  print(tamagotchi_status_secondary['hunger'])
+  current_age = update_age(initial_date, tamagotchi['age'])
+  phase = current_age
+  if phase <= 0:
+    idade = "egg"
+  elif phase in range(1,5):
+    idade = "baby"
+  elif phase in range(5,10):
+    idade = "child"
+  else:
+    idade = "teenager"
+
+
+
+    
+  while True:
+    def func_four_below_one():
+      return "está morrendo!"
+
+    def func_three_below_one():
+      return "está se sentindo um pouco mal"
+
+    def func_two_below_one():
+      return "está se sentindo normal"
+
+    def func_one_below_one():
+      return "está bem"
+
+    def func_no_below_one():
+      return "está ótimo!"
+
+    count_below_one = sum(1 for value in tamagotchi_status_secondary.values() if value <= 1)
+
+
+    if count_below_one == 4:
+      result = func_four_below_one()
+    elif count_below_one == 3:
+      result = func_three_below_one()
+    elif count_below_one == 2:
+      result = func_two_below_one()
+    elif count_below_one == 1:
+      result = func_one_below_one()
+    else:
+        result = func_no_below_one()
+
+    print('Bem vindo aos status do seu tamagotchi')
+    time.sleep(2)
+    print(f'seu tamagotchi está {result}. Atualmente ele é um {idade}.')
+    print(f'ele pesa {tamagotchi["weight"]} kg e está com {current_age} anos.')
+    input('#')
+    break
+
+
+last_event_date = datetime(2024, 8, 15)
+def check_and_perform_action(last_event_date):
+  current_date = datetime.now()
+  days_passed = (current_date - last_event_date).days
+    
+  if days_passed >= 2:
+
+    tamagotchi['sickness'] += 1
+
+    last_event_date = current_date
+  else:
+    pass
+    
+  return last_event_date
+
+#inicio do game
+while True:
+  limpar_tela()
+  #last_event_date = check_and_perform_action(last_event_date)  #colocar só quando dorme
+  
+  print('Bem vindo ao tamagotchi!')
+  print('')
+  print("""                                                  
+       _=,_         
+    o_/6 /#\        
+    \__ |##/        
+     ='|--\         
+       /   #'-.     
+       \#|_   _'-. /
+        |/ \_( # |" 
+       C/ ,--___/              """)
+  print("")
+  
+  escolhas = ["1- alimentar", "2- brincar", "3- dormir", "4- dar remedio", "5- ver status"]
+  print('escolha uma das seguintes opções')
+  for x in escolhas:
+    print(x)
+    
+  print("\n" "obs: inacabado")
+  escolha = input('#')
+  if escolha == '1':
+    feed()
+  elif escolha == '2':
+    game()
+  elif escolha == '3':
+    lights()
+    last_event_date = check_and_perform_action(last_event_date)
+  elif escolha == '4':
+    medicine()
+  elif escolha == '5':
+    status()
+  else:
+    print('escolha uma opção valida')   
+    continue 
