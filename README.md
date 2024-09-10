@@ -11,4 +11,4 @@ Python 3.x Standard Python libraries (os, time, datetime, random) How to Use:
 
 Clone the repository. Run the script tamagotchi.py using Python 3. Follow the on-screen instructions to interact with your Tamagotchi.
 
-/// Still working on a .json save state and real time status; /// Maybe some sort of evolve? Idk
+/// Still working on a .json save state and real time status; done ✅ /// Maybe some sort of evolve? Idk
