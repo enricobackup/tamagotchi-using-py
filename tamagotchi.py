@@ -2,21 +2,22 @@ import os
 import time
 from datetime import datetime, timedelta
 from random import randint
+import json
 
 
 #insira a data atual!
-initial_date = datetime(2024, 8, 15)
+initial_date = datetime(2024, 9, 8)
 
 
 
 tamagotchi = {
-  "hunger": 0, #ok
-  "happiness": 0, #ok
-  "health": 0, #ok
-  "energy": 0, #ok
-  "age": 0, #ok
-  "weight": 0, #ok
-  "sickness": 0, #ok
+  "hunger": 0,
+  "happiness": 0,
+  "health": 0, 
+  "energy": 0,
+  "age": 0, 
+  "weight": 0, 
+  "sickness": 0, 
   "alive": True,
 }
 
@@ -108,7 +109,6 @@ def feed():
       limpar_tela()
       continue
     
-#sistema de alimentação funcionando, aumentando hunger e happiness :)
 
 def lights():
   sleep_delay = 10
@@ -139,9 +139,7 @@ def lights():
     else:
       print('escolha uma opção valida!')
       continue
-    
-#sistema sleep funcionando, aumentando energia :)
-
+  
   
 def game():
   while True:
@@ -216,6 +214,19 @@ def medicine():
   print(heart_stages[health_heart])
   time.sleep(2)
   
+def save_game():
+  files = tamagotchi
+  with open("tamagotchi.json", "w") as archive:
+    json.dump(files, archive, indent=2)
+    
+def read_save():
+  global tamagotchi
+  try:
+    with open("tamagotchi.json", "r") as archive:
+      new_files = json.load(archive)
+      tamagotchi = new_files
+  except:
+    pass
   
 
 def status():
@@ -299,22 +310,26 @@ def check_and_perform_action(last_event_date):
     
   return last_event_date
 
-#inicio do game
 while True:
   limpar_tela()
-  #last_event_date = check_and_perform_action(last_event_date)  #colocar só quando dorme
-  
   print('Bem vindo ao tamagotchi!')
   print('')
   print("""                                                  
-       _=,_         
-    o_/6 /#\        
-    \__ |##/        
-     ='|--\         
-       /   #'-.     
-       \#|_   _'-. /
-        |/ \_( # |" 
-       C/ ,--___/              """)
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢀⣤⠤⠤⠴⠤⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡴⠚⠉⠀⠀⠀⠀⠀⠀⠀⠀⠉⠑⠲⣄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⢀⣄⠀⠀⣠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣆⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⣾⣠⠎⠀⣸⠁⣸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡆⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢰⠃⣾⣿⡏⠀⢰⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣾⠷⠻⠟⠀⠀⠸⣿⠏⠀⠀⢠⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⢱⠀⠀
+⢠⡴⢦⣤⣄⠀⡇⠀⠀⠀⢰⣶⣶⡄⠀⠀⠀⠈⠛⠛⠯⠿⠃⠀⠀⠀⠀⠀⠀⢸⡘⠀⠀
+⢸⣹⢿⣾⣹⢿⣿⠀⠀⠀⠀⠹⠏⠀⠀⠀⠀⠀⠀⠀⣀⣶⣆⣀⠀⠀⠀⠀⠀⠀⣿⡀⠀
+⠘⣭⢷⣫⡽⣯⢿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢶⣻⠽⣶⣫⣟⣷⡄⠀⠀⠀⠀⠘⢖⡀
+⠀⠘⣯⢷⣻⣽⣻⣿⡄⠀⠀⠀⠀⠀⠀⢀⣼⣳⣻⢞⣟⣳⡽⣞⣳⢿⡀⠀⠀⠀⠀⠘⣡
+⠀⠀⠈⢯⢷⣞⣷⣻⣿⣄⠀⠀⠀⠀⢠⣿⣳⡽⣳⣟⣾⡳⣿⠽⣯⣟⣧⠀⠀⠀⠀⠀⠸
+⠀⠀⠀⠀⠙⢞⣾⣳⢿⣿⣷⢤⠀⠈⢿⣳⣳⢟⣳⡽⣶⣻⣽⡻⣗⣯⠷⡄⠀⠀⠀⠀⡬
+⠀⠀⠀⠀⠀⠀⠱⢏⣿⡿⠁⠀⠉⠶⣸⣷⢏⡿⣷⢿⢷⡿⣶⢿⣹⡎⠁⠈⠳⠶⠶⠊⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠫⣿⣝⡷⣯⠿⣝⣯⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀           """)
   print("")
   
   escolhas = ["1- alimentar", "2- brincar", "3- dormir", "4- dar remedio", "5- ver status"]
@@ -338,3 +353,5 @@ while True:
   else:
     print('escolha uma opção valida')   
     continue 
+  
+    
