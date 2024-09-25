@@ -13,3 +13,4 @@ Clone the repository. Run the script tamagotchi.py using Python 3. Follow the on
 Don't forget to maximize your terminal 
 
 /// Still working on a .json save state and real time status; done ✅ /// Maybe some sort of evolve? Idk Done ✅
+/// working on a better way to see your status
