@@ -11,10 +11,10 @@ initial_date = datetime(2024, 9, 25)
 
 
 tamagotchi = {
-  "hunger": 0,
-  "happiness": 0,
-  "health": 0, 
-  "energy": 0,
+  "hunger": 3,
+  "happiness": 3,
+  "health": 3,
+  "energy": 3,
   "age": 0, 
   "weight": 0, 
   "sickness": 0, 
@@ -241,8 +241,6 @@ def status():
     break
   
   limpar_tela()
-  print(tamagotchi['hunger'])
-  print(tamagotchi_status_secondary['hunger'])
   current_age = update_age(initial_date, tamagotchi['age'])
   phase = current_age
   if phase <= 0:
@@ -258,19 +256,19 @@ def status():
     
   while True:
     def func_four_below_one():
-      return "está morrendo!"
+      return "morrendo!"
 
     def func_three_below_one():
-      return "está se sentindo um pouco mal"
+      return "se sentindo um pouco mal"
 
     def func_two_below_one():
-      return "está se sentindo normal"
+      return "se sentindo normal"
 
     def func_one_below_one():
-      return "está bem"
+      return "bem"
 
     def func_no_below_one():
-      return "está ótimo!"
+      return "ótimo!"
 
     count_below_one = sum(1 for value in tamagotchi_status_secondary.values() if value <= 1)
 
@@ -308,7 +306,7 @@ def check_and_perform_action(last_event_date):
     pass
     
   return last_event_date
-
+ 
 def age_ascii(idade):
   if idade == "egg":
     print("""
@@ -417,3 +415,4 @@ while True:
     continue 
   
     
+
