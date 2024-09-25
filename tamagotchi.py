@@ -6,7 +6,7 @@ import json
 
 
 #insira a data atual!
-initial_date = datetime(2024, 9, 8)
+initial_date = datetime(2024, 9, 25)
 
 
 
@@ -252,10 +252,9 @@ def status():
   elif phase in range(5,10):
     idade = "child"
   else:
-    idade = "teenager"
+    idade = "Adult"
 
-
-
+############################
     
   while True:
     def func_four_below_one():
@@ -310,11 +309,57 @@ def check_and_perform_action(last_event_date):
     
   return last_event_date
 
-while True:
-  limpar_tela()
-  print('Bem vindo ao tamagotchi!')
-  print('')
-  print("""                                                  
+def age_ascii(idade):
+  if idade == "egg":
+    print("""
+                                                                          
+              ████████                                  
+            ██        ██                                
+          ██▒▒▒▒        ██                              
+        ██▒▒▒▒▒▒      ▒▒▒▒██                            
+        ██▒▒▒▒▒▒      ▒▒▒▒██                            
+      ██  ▒▒▒▒        ▒▒▒▒▒▒██                          
+      ██                ▒▒▒▒██                          
+    ██▒▒      ▒▒▒▒▒▒          ██                        
+    ██      ▒▒▒▒▒▒▒▒▒▒        ██                        
+    ██      ▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒██                        
+    ██▒▒▒▒  ▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒██                        
+      ██▒▒▒▒  ▒▒▒▒▒▒    ▒▒▒▒██                          
+      ██▒▒▒▒            ▒▒▒▒██                          
+        ██▒▒              ██                            
+          ████        ████                              
+              ████████                                  
+""")
+  elif idade == "baby":
+    print("""
+        ██████████        
+    ████▒▒▒▒░░░░░░████    
+  ██▒▒▒▒░░░░░░      ░░██  
+  ██▒▒▒▒░░░░░░░░    ░░██  
+██▒▒▒▒▒▒░░░░░░░░░░░░░░▒▒██
+██▒▒▒▒▒▒▒▒░░░░░░░░░░░░▒▒██
+██▒▒▒▒▒▒▒▒▒▒░░░░░░░░▒▒▒▒██
+  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██  
+    ██████████████████    
+          """)
+    
+  elif idade == "child":
+    print("""
+          ██████████          
+      ████░░░░░░░░░░████      
+    ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██    
+  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██  
+  ██▒▒▒▒██▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██  
+██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██
+██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██
+██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+██▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██
+██▓▓▒▒▒▒▒▒▒▒██████▒▒▒▒▒▒▒▒▓▓██
+  ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██  
+    ██████████████████████    
+""")
+  else:
+    print("""
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢀⣤⠤⠤⠴⠤⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡴⠚⠉⠀⠀⠀⠀⠀⠀⠀⠀⠉⠑⠲⣄⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⢀⣄⠀⠀⣠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣆⠀⠀⠀⠀
@@ -329,7 +374,24 @@ while True:
 ⠀⠀⠀⠀⠙⢞⣾⣳⢿⣿⣷⢤⠀⠈⢿⣳⣳⢟⣳⡽⣶⣻⣽⡻⣗⣯⠷⡄⠀⠀⠀⠀⡬
 ⠀⠀⠀⠀⠀⠀⠱⢏⣿⡿⠁⠀⠉⠶⣸⣷⢏⡿⣷⢿⢷⡿⣶⢿⣹⡎⠁⠈⠳⠶⠶⠊⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠫⣿⣝⡷⣯⠿⣝⣯⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀           """)
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀           
+""")
+
+while True:
+  current_age = update_age(initial_date, tamagotchi['age'])
+  phase = current_age
+  if phase <= 0:
+    idade = "egg"
+  elif phase in range(1,5):
+    idade = "baby"
+  elif phase in range(5,10):
+    idade = "child"
+  else:
+    idade = "Adult"
+  limpar_tela()
+  print('Bem vindo ao tamagotchi!')
+  print('')
+  age_ascii(idade)
   print("")
   
   escolhas = ["1- alimentar", "2- brincar", "3- dormir", "4- dar remedio", "5- ver status"]
