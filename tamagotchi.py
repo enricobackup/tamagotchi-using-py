@@ -3,10 +3,11 @@ import time
 from datetime import datetime, timedelta
 from random import randint
 import json
+import inquirer
 
 
 #insira a data atual!
-initial_date = datetime(2024, 9, 25)
+initial_date = datetime(2024, 9, 2)
 
 
 
@@ -391,28 +392,32 @@ while True:
   print('')
   age_ascii(idade)
   print("")
-  
-  escolhas = ["1- alimentar", "2- brincar", "3- dormir", "4- dar remedio", "5- ver status"]
-  print('escolha uma das seguintes opções')
-  for x in escolhas:
-    print(x)
-    
-  print("\n" "obs: inacabado")
-  escolha = input('#')
-  if escolha == '1':
+
+  question = [
+    inquirer.List(
+      "selecao",
+      message="Escolha uma das seguintes opções",
+      choices=[
+        "Alimentar",
+        "Brincar",
+        "Dormir",
+        "Dar remédio",
+        "Ver status",
+      ]
+    )
+  ]
+  answer = inquirer.prompt(question)
+  selecao = answer.get("selecao")
+  if selecao == "Alimentar":
     feed()
-  elif escolha == '2':
+  elif selecao == "Brincar":
     game()
-  elif escolha == '3':
+  elif selecao == "Dormir":
     lights()
     last_event_date = check_and_perform_action(last_event_date)
-  elif escolha == '4':
+  elif selecao == "Dar remédio":
     medicine()
-  elif escolha == '5':
+  elif selecao == "Ver status":
     status()
-  else:
-    print('escolha uma opção valida')   
-    continue 
-  
     
 
